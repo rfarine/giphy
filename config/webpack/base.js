@@ -1,4 +1,11 @@
-const { buildPath, entryFile } = require('../paths');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { buildPath, entryFile, indexFile } = require('../paths');
+
+const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: indexFile,
+  filename: 'index.html',
+  inject: 'body'
+})
 
 module.exports = ({
   output = {},
@@ -26,5 +33,7 @@ module.exports = ({
         }
       ]
     },
+
+    plugins: [ htmlWebpackPluginConfig ],
   };
 };
