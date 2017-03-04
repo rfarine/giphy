@@ -1,15 +1,23 @@
 const { resolve, join } = require('path');
 
 const cwd = process.cwd();
+
+// Within main dir
 const srcPath = resolve(join(cwd, 'src'));
-const entryFile = join(srcPath, 'entry.js');
-const indexFile = join(srcPath, 'index.html');
+const nodeModulesPath = resolve(join(cwd, 'node_modules'));
+
+// Within /src
 const buildPath = join(srcPath, 'public');
+const componentsPath = join(srcPath, 'components');
+const entryFile = join(srcPath, 'index.js');
+const indexFile = join(srcPath, 'index.html');
 
 module.exports = {
+  buildPath,
+  componentsPath,
   cwd,
-  srcPath,
   entryFile,
   indexFile,
-  buildPath,
+  nodeModulesPath,
+  srcPath,
 };

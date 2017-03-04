@@ -1,11 +1,19 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { buildPath, entryFile, indexFile } = require('../paths');
+const {
+  buildPath,
+  componentsPath,
+  entryFile,
+  indexFile,
+  nodeModulesPath,
+  srcPath,
+} = require('../paths');
 
 const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: indexFile,
   filename: 'index.html',
   inject: 'body'
-})
+});
 
 module.exports = {
   entry: entryFile,
@@ -30,6 +38,16 @@ module.exports = {
         exclude: /node_modules/,
       }
     ]
+  },
+
+  resolve: {
+    modules: [
+      componentsPath,
+      nodeModulesPath,
+      srcPath,
+    ],
+
+    extensions: ['.js', '.jsx'],
   },
 
   plugins: [ htmlWebpackPluginConfig ],
