@@ -1,0 +1,9 @@
+{
+  "name": "Giphy",
+  "version": "0.0.1",
+  "description": "Giphy search application",
+  "main": "index.js",
+  "repository": "git@github.com:rfarine/giphy.git",
+  "author": "Rae Farine <rfarine1027@gmail.com>",
+  "license": "MIT"
+}
