@@ -7,33 +7,41 @@ const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body'
 })
 
-module.exports = ({
-  output = {},
-}) => {
-  return {
-    entry: entryFile,
+module.exports = {
+  entry: entryFile,
 
-    output: Object.assign({
-      path: buildPath,
-      filename: 'js/[name].js',
-      chunkFilename: 'js/[name].chunk.js',
-    }, output),
+  output: {
+    path: buildPath,
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js',
+  },
 
-    module: {
-      loaders: [
-        {
-          test: /\.js$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-        },
-        {
-          test: /\.jsx$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-        }
-      ]
-    },
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      }
+    ]
+  },
 
-    plugins: [ htmlWebpackPluginConfig ],
-  };
+  plugins: [ htmlWebpackPluginConfig ],
+
+  devtool: 'source-map',
+
+  devServer: {
+    contentBase: buildPath,
+    compress: true,
+    historyApiFallback: true,
+    hot: true,
+    https: false,
+    noInfo: true,
+  },
 };
