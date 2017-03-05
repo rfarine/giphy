@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.3] 2017-03-05
+- Karma/PhantomJS/Mocha setup
+- Fixed resolver in webpack config
+- Setup for CSS modules for use in React components
+
 ## [0.0.2] 2017-03-05
 - Webpack setup
 - Hello World in App.jsx
