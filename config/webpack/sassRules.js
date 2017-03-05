@@ -2,6 +2,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const IS_DEV = process.env.NODE_ENV === 'development';
 const {
   componentsPath,
+  nodeModulesPath,
   srcPath,
 } = require('../paths');
 
@@ -28,7 +29,7 @@ module.exports = {
       loader: 'sass-loader',
       options: {
         sourceMap: IS_DEV,
-        includePaths: [ srcPath, componentsPath ]
+        includePaths: [ srcPath, componentsPath, nodeModulesPath ]
       }
     }]
   }),
