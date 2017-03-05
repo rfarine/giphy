@@ -1,13 +1,10 @@
 module.exports = {
-    'extends': 'airbnb',
-    'plugins': [
-        'react',
-        'jsx-a11y',
-        'import'
+    'extends': [
+      'eslint:recommended',
+      'airbnb'
     ],
     'parserOptions': {
     'ecmaVersion': 6,
-    'sourceType': 'module',
     'ecmaFeatures': {
         'jsx': true,
       }
@@ -17,5 +14,6 @@ module.exports = {
     },
     'rules': {
       'arrow-body-style': 'off',
+      'react/jsx-filename-extension': 'off',
     },
 };

@@ -7,9 +7,10 @@
   "author": "Rae Farine <rfarine1027@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --config config/webpack/base.js --progress --colors"
+    "dev": "webpack-dev-server --config config/webpack/base.js --progress --colors --hot --inline"
   },
   "dependencies": {
+    "babel-core": "^6.23.1",
     "path": "^0.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
