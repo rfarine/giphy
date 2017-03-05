@@ -1,9 +1,7 @@
 # giphy
 
 ## Dependencies
-- Homebrew, Yarn
-
-If using mac OS, run `brew update` first.
+`brew update`
 
 `brew install yarn`
 
@@ -15,6 +13,8 @@ If using mac OS, run `brew update` first.
 - In development mode: run `yarn dev`. Visit `http://localhost:8080`.
 
 ## Test
+- Single run: `yarn test`
+- TDD: `yarn tdd`
 
 ## Changelog
 See [CHANGELOG.md](CHANGELOG.md)

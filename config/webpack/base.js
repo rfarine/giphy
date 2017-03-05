@@ -1,5 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const sassRules = require('./sassRules.js');
+
 const {
   buildPath,
   componentsPath,
@@ -14,6 +17,8 @@ const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 });
+
+const extractTextPluginConfig = new ExtractTextPlugin('css/styles.css');
 
 module.exports = {
   entry: entryFile,
@@ -36,21 +41,28 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-      }
+      },
+      sassRules,
     ]
   },
 
   resolve: {
     modules: [
-      componentsPath,
-      nodeModulesPath,
       srcPath,
+      nodeModulesPath,
     ],
+
+    alias: {
+      components: componentsPath,
+    },
 
     extensions: ['.js', '.jsx'],
   },
 
-  plugins: [ htmlWebpackPluginConfig ],
+  plugins: [
+    extractTextPluginConfig,
+    htmlWebpackPluginConfig,
+  ],
 
   devtool: 'source-map',
 
