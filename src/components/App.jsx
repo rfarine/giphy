@@ -8,15 +8,17 @@ const App = ({ results }) => {
   return (
     <div className={style.container}>
       <SearchBar />
-      <Results>
-        {results}
-      </Results>
+      <Results results={results} />
     </div>
   );
 };
 
+App.defaultProps = {
+  results: [],
+};
+
 App.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 export default App;

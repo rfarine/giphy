@@ -1,20 +1,20 @@
 import React, { PropTypes } from 'react';
 import style from './results.scss';
 
-const Results = ({ children }) => {
+const Results = ({ results }) => {
   return (
     <div className={style.component}>
-      {children}
+      {results}
     </div>
   );
 };
 
 Results.defaultProps = {
-  children: [{}],
+  results: [],
 };
 
 Results.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.shape()),
+  results: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 export default Results;
