@@ -9,6 +9,7 @@ const nodeModulesPath = resolve(join(cwd, 'node_modules'));
 // Within /src
 const buildPath = join(srcPath, 'public');
 const componentsPath = join(srcPath, 'components');
+const stylesPath = join(srcPath, 'styles');
 const entryFile = join(srcPath, 'index.js');
 const indexFile = join(srcPath, 'index.html');
 
@@ -20,4 +21,5 @@ module.exports = {
   indexFile,
   nodeModulesPath,
   srcPath,
+  stylesPath,
 };
