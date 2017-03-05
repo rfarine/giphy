@@ -1,8 +1,8 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import App from '../../src/components/App';
-import SearchBar from '../../src/components/searchBar/searchBar';
+import App from 'components/App';
+import SearchBar from 'components/searchBar/searchBar';
 
 describe("App", function() {
   it("renders SearchBar", function() {
