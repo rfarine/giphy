@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import style from './searchBar.scss';
 
-const SearchBar = ({ onClick }) => {
+const SearchBar = ({ onSubmit }) => {
   return (
     <div className={style.component}>
       <input
@@ -12,7 +12,7 @@ const SearchBar = ({ onClick }) => {
       <input
         className={style.button}
         type="button"
-        onClick={onClick}
+        onClick={onSubmit}
         value="Search"
       />
     </div>
@@ -20,7 +20,7 @@ const SearchBar = ({ onClick }) => {
 };
 
 SearchBar.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
