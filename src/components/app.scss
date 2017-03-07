@@ -1,0 +1,12 @@
+@import 'breakpoint-sass/stylesheets/breakpoint';
+@import 'styles/variables';
+
+.container {
+  padding: 2em;
+
+  @include breakpoint($desktop) {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2em 0;
+  }
+}

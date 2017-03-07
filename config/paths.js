@@ -11,6 +11,7 @@ const buildPath = join(srcPath, 'public');
 const componentsPath = join(srcPath, 'components');
 const entryFile = join(srcPath, 'index.js');
 const indexFile = join(srcPath, 'index.html');
+const stylesPath = join(srcPath, 'styles');
 
 module.exports = {
   buildPath,
@@ -20,4 +21,5 @@ module.exports = {
   indexFile,
   nodeModulesPath,
   srcPath,
+  stylesPath,
 };

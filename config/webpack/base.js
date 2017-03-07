@@ -10,6 +10,7 @@ const {
   indexFile,
   nodeModulesPath,
   srcPath,
+  stylesPath,
 } = require('../paths');
 
 const htmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -54,6 +55,7 @@ module.exports = {
 
     alias: {
       components: componentsPath,
+      styles: stylesPath,
     },
 
     extensions: ['.js', '.jsx'],

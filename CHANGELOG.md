@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0] 2017-03-06
+- Normalized CSS (normalize.scss)
+- Added breakpoint-sass for media queries
+- Added Redux store
+- Added React Router (preparing for route changes for later)
+- Hitting the Giphy API search endpoint and rendering results
+
 ## [0.0.3] 2017-03-05
 - Karma/PhantomJS/Mocha setup
 - Fixed resolver in webpack config
