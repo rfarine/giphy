@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import App from 'components/App';
 import Results from 'components/results/results';
-import reducer from './redux/index';
+import configureStore from './redux/configureStore';
 
-const store = createStore(reducer);
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
