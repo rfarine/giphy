@@ -1,6 +1,6 @@
 import { CALL_API } from 'redux-api-middleware';
 
-export const createRequestAction = ({
+const createRequestAction = ({
   endpoint = '',
   method = 'GET',
   body,

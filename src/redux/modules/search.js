@@ -8,23 +8,26 @@ export const PERFORM_SEARCH_FAIL = 'search/PERFORM_SEARCH_FAIL';
 
 // Reducer
 const initialState = {
+  error: null,
   loading: false,
   results: [],
 };
 
 export const reducer = handleActions({
-  [PERFORM_SEARCH]: (state, action) => ({
+  [PERFORM_SEARCH]: state => ({
     ...state,
     loading: true,
   }),
 
   [PERFORM_SEARCH_SUCCESS]: (state, action) => ({
     ...state,
+    results: action.payload.data,
     loading: false,
   }),
 
   [PERFORM_SEARCH_FAIL]: (state, action) => ({
     ...state,
+    error: action.payload.error,
     loading: false,
   }),
 }, initialState);
