@@ -1,43 +1,22 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import style from './previewImage.scss';
 
-class PreviewImage extends Component {
-  constructor(props) {
-    super(props);
-    this.onMouseOver = this.onMouseOver.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
-    this.state = {
-      backgroundImage: props.still,
-    };
-  }
-
-  onMouseOver() {
-    const { preview } = this.props;
-
-    this.setState({
-      backgroundImage: preview,
-    });
-  }
-
-  onMouseOut() {
-    const { still } = this.props;
-
-    this.setState({
-      backgroundImage: still,
-    });
-  }
-
-  render() {
-    return (
+const PreviewImage = ({
+  preview,
+  still,
+}) => {
+  return (
+    <div
+      className={style.component}
+      style={{ backgroundImage: `url(${still})` }}
+    >
       <div
-        className={style.component}
-        style={{ backgroundImage: `url(${this.state.backgroundImage})` }}
-        onMouseOver={this.onMouseOver}
-        onMouseOut={this.onMouseOut}
+        className={style.preview}
+        style={{ backgroundImage: `url(${preview})` }}
       />
-    );
-  }
-}
+    </div>
+  );
+};
 
 PreviewImage.propTypes = {
   preview: PropTypes.string.isRequired,

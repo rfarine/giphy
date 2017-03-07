@@ -17,10 +17,12 @@ class Results extends Component {
       const preview = get(result.images, 'fixed_width.url', '');
 
       return (
-        <PreviewImage
-          preview={preview}
-          still={still}
-        />
+        <div key={result.id}>
+          <PreviewImage
+            preview={preview}
+            still={still}
+          />
+        </div>
       );
     });
   }
@@ -31,15 +33,15 @@ class Results extends Component {
     if (loading) {
       return (
         <div className={style.component}>
-          Loading...
+          <h2 className={style.text}>Loading...</h2>
         </div>
       );
     }
 
-    if (!results) {
+    if (results.length < 1) {
       return (
         <div className={style.component}>
-          No results.
+          <h2 className={style.text}>No results.</h2>
         </div>
       );
     }
@@ -54,7 +56,9 @@ class Results extends Component {
 
 Results.propTypes = {
   loading: PropTypes.bool.isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({
+
+  })).isRequired,
 };
 
 export default Results;
