@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import { keyBy } from 'lodash';
 import createRequestAction from '../createRequestAction';
 
 // Action Types
@@ -13,6 +14,10 @@ const initialState = {
   results: [],
 };
 
+function keyById(data) {
+  return keyBy(data, 'id');
+}
+
 export const reducer = handleActions({
   [PERFORM_SEARCH]: state => ({
     ...state,
@@ -21,7 +26,7 @@ export const reducer = handleActions({
 
   [PERFORM_SEARCH_SUCCESS]: (state, action) => ({
     ...state,
-    results: action.payload.data,
+    results: keyById(action.payload.data),
     loading: false,
   }),
 

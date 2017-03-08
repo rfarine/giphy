@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
-import { get, map } from 'lodash';
+import { get, map, pick } from 'lodash';
 
-const searchResults = state => state.search.results;
+export const searchResults = state => state.search.results;
+export const resultById = (state, props) => state.search.results[props.params.id];
 
 export const getSearchResults = createSelector(
   [searchResults],
@@ -16,6 +17,27 @@ export const getSearchResults = createSelector(
         still,
       };
     });
+  }
+);
+
+export const getResultById = createSelector(
+  [resultById],
+  (result) => {
+    const simplifiedResult = pick(result, [
+      'images',
+      'import_datetime',
+      'rating',
+      'username',
+    ]);
+
+    const looping = get(simplifiedResult.images, 'original.url', '');
+
+    return {
+      dateTime: simplifiedResult.import_datetime,
+      looping,
+      rating: simplifiedResult.rating,
+      userName: simplifiedResult.username,
+    };
   }
 );
 

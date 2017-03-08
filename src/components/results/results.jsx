@@ -17,12 +17,12 @@ class Results extends Component {
   }
 
   renderResults() {
-    const { results } = this.props;
+    const { params, results } = this.props;
 
     return results.map((result) => {
       return (
         <div key={result.id}>
-          <Link to={result.id}>
+          <Link to={`/results/${params.searchTerm}/${result.id}`}>
             <PreviewImage
               preview={result.preview}
               still={result.still}
@@ -62,6 +62,9 @@ class Results extends Component {
 
 Results.propTypes = {
   loading: PropTypes.bool.isRequired,
+  params: PropTypes.shape({
+    searchTerm: PropTypes.string.isRequired,
+  }).isRequired,
   search: PropTypes.func.isRequired,
   results: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
