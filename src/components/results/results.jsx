@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { getSearchResults } from 'redux/selectors';
+import { performSearch } from 'redux/modules/search';
 import PreviewImage from 'components/previewImage/previewImage';
 import style from './results.scss';
 
@@ -8,16 +12,22 @@ class Results extends Component {
     this.renderResults = this.renderResults.bind(this);
   }
 
+  componentDidMount() {
+    this.props.search();
+  }
+
   renderResults() {
     const { results } = this.props;
 
     return results.map((result) => {
       return (
         <div key={result.id}>
-          <PreviewImage
-            preview={result.preview}
-            still={result.still}
-          />
+          <Link to={result.id}>
+            <PreviewImage
+              preview={result.preview}
+              still={result.still}
+            />
+          </Link>
         </div>
       );
     });
@@ -52,7 +62,27 @@ class Results extends Component {
 
 Results.propTypes = {
   loading: PropTypes.bool.isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  search: PropTypes.func.isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    still: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
-export default Results;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.search.loading,
+    results: getSearchResults(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    search() {
+      dispatch(performSearch(props.params.searchTerm));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);
