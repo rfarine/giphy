@@ -37,7 +37,7 @@ export const performSearch = (searchTerm) => {
   const query = searchTerm.replace(/ /g, '+');
 
   return createRequestAction({
-    endpoint: `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=dc6zaTOxFJmzC&offset=0`,
+    endpoint: `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=dc6zaTOxFJmzC&limit=50&offset=0`,
     method: 'GET',
     types: [
       { type: PERFORM_SEARCH },

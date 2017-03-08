@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { get } from 'lodash';
 import PreviewImage from 'components/previewImage/previewImage';
 import style from './results.scss';
 
@@ -13,14 +12,11 @@ class Results extends Component {
     const { results } = this.props;
 
     return results.map((result) => {
-      const still = get(result.images, 'fixed_width_still.url', '');
-      const preview = get(result.images, 'fixed_width.url', '');
-
       return (
         <div key={result.id}>
           <PreviewImage
-            preview={preview}
-            still={still}
+            preview={result.preview}
+            still={result.still}
           />
         </div>
       );
@@ -56,9 +52,7 @@ class Results extends Component {
 
 Results.propTypes = {
   loading: PropTypes.bool.isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape({
-
-  })).isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Results;

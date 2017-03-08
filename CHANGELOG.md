@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.1] 2017-03-07
+- Select only necessary attributes returned from giphy response (reselect)
+- Change limit of results to 50
+
 ## [0.1.0] 2017-03-06
 - Normalized CSS (normalize.scss)
 - Added breakpoint-sass for media queries
