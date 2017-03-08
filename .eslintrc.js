@@ -23,5 +23,11 @@ module.exports = {
     'rules': {
       'arrow-body-style': 'off',
       'react/jsx-filename-extension': 'off',
+      'comma-dangle': ['error', {
+        'arrays': 'always-multiline',
+        'objects': 'always-multiline',
+        'imports': 'always-multiline',
+        'exports': 'always-multiline'
+      }],
     },
 };

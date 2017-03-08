@@ -1,6 +1,6 @@
 {
   "name": "Giphy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Giphy search application",
   "main": "src/entry.js",
   "repository": "git@github.com:rfarine/giphy.git",
@@ -24,6 +24,7 @@
     "redux-actions": "^2.0.1",
     "redux-api-middleware": "^1.0.2",
     "redux-logger": "^2.8.2",
+    "reselect": "^2.5.4",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   },

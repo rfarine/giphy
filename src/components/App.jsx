@@ -4,6 +4,7 @@ import SearchBar from 'components/searchBar/searchBar';
 import Results from 'components/results/results';
 import 'styles/global.scss';
 import { performSearch } from 'redux/modules/search';
+import { getSearchResults } from 'redux/selectors';
 import style from './app.scss';
 
 class App extends Component {
@@ -44,7 +45,7 @@ App.propTypes = {
 const mapStateToProps = (state) => {
   return {
     loading: state.search.loading,
-    results: state.search.results,
+    results: getSearchResults(state),
   };
 };
 
