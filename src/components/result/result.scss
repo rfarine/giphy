@@ -1,0 +1,19 @@
+@import 'styles/variables';
+
+.component {
+  text-align: center;
+  padding: 2em 0;
+}
+
+.image {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.meta {
+  text-align: left;
+}
+
+strong {
+  color: $blue;
+}

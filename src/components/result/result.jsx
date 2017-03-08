@@ -1,12 +1,17 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getResultById } from 'redux/selectors';
+import style from './result.scss';
 
 const Result = ({ result }) => {
   return (
-    <div>
-      <img src={result.looping} alt="" />
-      <div>
+    <div className={style.component}>
+      <img
+        className={style.image}
+        src={result.looping}
+        alt=""
+      />
+      <div className={style.meta}>
         <strong>Rating:</strong> {result.rating} <br />
         <strong>Date/Time Uploaded:</strong> {result.dateTime} <br />
         <strong>User:</strong> {result.userName}

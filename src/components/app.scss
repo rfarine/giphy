@@ -3,6 +3,7 @@
 
 .container {
   padding: 2em;
+  box-sizing: border-box;
 
   @include breakpoint($desktop) {
     max-width: 960px;
