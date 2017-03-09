@@ -57,7 +57,6 @@ class Results extends Component {
 }
 
 Results.propTypes = {
-  back: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   params: PropTypes.shape({
     searchTerm: PropTypes.string.isRequired,
