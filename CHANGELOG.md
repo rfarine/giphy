@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.3] 2017-03-09
+## [0.1.3] 2017-03-08
 - Add Button component (and tests)
 - Fix karma config
 
