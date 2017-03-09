@@ -13,4 +13,13 @@
       cursor: pointer;
     }
   }
+
+  a, a:link {
+    color: $linkColor;
+    text-decoration: none;
+
+    &:hover {
+      color: $linkHover;
+    }
+  }
 }

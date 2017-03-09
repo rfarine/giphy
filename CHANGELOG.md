@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.0] 2017-03-08
+- Add ability to add result to favorites in sessionStorage
+- Add TODO for Favorites page
+- Get Redux store set up for searching GIFs by multiple IDs (will be used for Favorites page)
+
 ## [0.1.3] 2017-03-08
 - Add Button component (and tests)
 - Fix karma config

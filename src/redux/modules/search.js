@@ -6,6 +6,9 @@ import createRequestAction from '../createRequestAction';
 export const PERFORM_SEARCH = 'search/PERFORM_SEARCH';
 export const PERFORM_SEARCH_SUCCESS = 'search/PERFORM_SEARCH_SUCCESS';
 export const PERFORM_SEARCH_FAIL = 'search/PERFORM_SEARCH_FAIL';
+export const PERFORM_SEARCH_BY_IDS = 'search/PERFORM_SEARCH_BY_IDS';
+export const PERFORM_SEARCH_BY_IDS_SUCCESS = 'search/PERFORM_SEARCH_BY_IDS_SUCCESS';
+export const PERFORM_SEARCH_BY_IDS_FAIL = 'search/PERFORM_SEARCH_BY_IDS_FAIL';
 
 // Reducer
 const initialState = {
@@ -35,6 +38,23 @@ export const reducer = handleActions({
     error: action.payload.error,
     loading: false,
   }),
+
+  [PERFORM_SEARCH_BY_IDS]: state => ({
+    ...state,
+    loading: false,
+  }),
+
+  [PERFORM_SEARCH_BY_IDS_SUCCESS]: (state, action) => ({
+    ...state,
+    results: keyById(action.payload.data),
+    loading: false,
+  }),
+
+  [PERFORM_SEARCH_BY_IDS_FAIL]: (state, action) => ({
+    ...state,
+    error: action.payload.error,
+    loading: false,
+  }),
 }, initialState);
 
 // Action Creators
@@ -59,6 +79,20 @@ export const performSearch = (searchTerm, opts = {}) => {
       { type: PERFORM_SEARCH },
       { type: PERFORM_SEARCH_SUCCESS },
       { type: PERFORM_SEARCH_FAIL },
+    ],
+  });
+};
+
+export const performSearchByIds = (ids) => {
+  return createRequestAction({
+    endpoint: `http://api.giphy.com/v1/gifs?
+      api_key=dc6zaTOxFJmzC&
+      ids=${ids}`,
+    method: 'GET',
+    types: [
+      { type: PERFORM_SEARCH_BY_IDS },
+      { type: PERFORM_SEARCH_BY_IDS_SUCCESS },
+      { type: PERFORM_SEARCH_BY_IDS_FAIL },
     ],
   });
 };
