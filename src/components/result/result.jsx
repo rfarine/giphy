@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => {
     back() {
       dispatch(goBack());
     },
-    home () {
+    home() {
       dispatch(go(-2));
     },
   };
