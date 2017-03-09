@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import style from './searchBar.scss';
 
 class SearchBar extends Component {
@@ -18,11 +20,11 @@ class SearchBar extends Component {
   }
 
   handleSubmit(event) {
-    const { onSubmit } = this.props;
+    const { dispatch } = this.props;
 
     event.preventDefault();
 
-    return onSubmit(this.state.value);
+    return dispatch(push(`results/${this.state.value}`));
   }
 
   render() {
@@ -45,7 +47,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default SearchBar;
+export default connect()(SearchBar);

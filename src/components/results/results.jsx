@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { goBack } from 'react-router-redux';
 import { getSearchResults } from 'redux/selectors';
 import { performSearch } from 'redux/modules/search';
 import PreviewImage from 'components/previewImage/previewImage';
@@ -17,7 +18,19 @@ class Results extends Component {
   }
 
   renderResults() {
-    const { params, results } = this.props;
+    const { params, loading, results } = this.props;
+
+    if (loading) {
+      return (
+        <h2 className={style.text}>Loading...</h2>
+      );
+    }
+
+    if (results.length < 1) {
+      return (
+        <h2 className={style.text}>No results.</h2>
+      );
+    }
 
     return results.map((result) => {
       return (
@@ -34,33 +47,21 @@ class Results extends Component {
   }
 
   render() {
-    const { loading, results } = this.props;
-
-    if (loading) {
-      return (
-        <div className={style.component}>
-          <h2 className={style.text}>Loading...</h2>
-        </div>
-      );
-    }
-
-    if (results.length < 1) {
-      return (
-        <div className={style.component}>
-          <h2 className={style.text}>No results.</h2>
-        </div>
-      );
-    }
+    const { back } = this.props;
 
     return (
-      <div className={style.component}>
-        {this.renderResults()}
+      <div>
+        <button onClick={back}>Go Back</button>
+        <div className={style.component}>
+          {this.renderResults()}
+        </div>
       </div>
     );
   }
 }
 
 Results.propTypes = {
+  back: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   params: PropTypes.shape({
     searchTerm: PropTypes.string.isRequired,
@@ -82,6 +83,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
+    back() {
+      dispatch(goBack());
+    },
+
     search() {
       dispatch(performSearch(props.params.searchTerm));
     },

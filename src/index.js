@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import App from 'components/App';
+import SearchBar from 'components/searchBar/searchBar';
 import Results from 'components/results/results';
 import Result from 'components/result/result';
 import configureStore from './redux/configureStore';
@@ -13,6 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <IndexRoute component={SearchBar} />
         <Route path="results/:searchTerm" component={Results} />
         <Route path="results/:searchTerm/:id" component={Result} />
       </Route>

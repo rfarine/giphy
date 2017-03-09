@@ -23,12 +23,4 @@
 
 .button {
   flex: 1;
-  border: 1px solid $button;
-  background: $button;
-  color: white;
-
-  &:hover, &:focus {
-    background: $buttonHover;
-    cursor: pointer;
-  }
 }
