@@ -6,6 +6,7 @@ import App from 'components/App';
 import SearchBar from 'components/searchBar/searchBar';
 import Results from 'components/results/results';
 import Result from 'components/result/result';
+import Favorites from 'components/favorites/favorites';
 import configureStore from './redux/configureStore';
 
 const store = configureStore();
@@ -17,6 +18,7 @@ ReactDOM.render(
         <IndexRoute component={SearchBar} />
         <Route path="results/:searchTerm" component={Results} />
         <Route path="results/:searchTerm/:id" component={Result} />
+        <Route path="favorites" component={Favorites} />
       </Route>
     </Router>
   </Provider>

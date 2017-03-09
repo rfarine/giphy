@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { goBack } from 'react-router-redux';
 import { getSearchResults } from 'redux/selectors';
 import { performSearch } from 'redux/modules/search';
-import Button from 'components/button/button';
 import PreviewImage from 'components/previewImage/previewImage';
 import style from './results.scss';
 
@@ -48,11 +46,8 @@ class Results extends Component {
   }
 
   render() {
-    const { back } = this.props;
-
     return (
       <div>
-        <Button onClick={back} text="Go Back" />
         <div className={style.component}>
           {this.renderResults()}
         </div>
@@ -84,10 +79,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    back() {
-      dispatch(goBack());
-    },
-
     search() {
       dispatch(performSearch(props.params.searchTerm));
     },
