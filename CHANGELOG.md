@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.2] 2017-03-08
+- Use back/home buttons on results/result pages
+- Only show search bar on "/"
+
 ## [0.1.1] 2017-03-07
 - Select only necessary attributes returned from giphy response (reselect)
 - Change limit of results to 50

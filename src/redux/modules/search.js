@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import { keyBy, merge } from 'lodash';
 import createRequestAction from '../createRequestAction';
 
 // Action Types
@@ -13,6 +14,10 @@ const initialState = {
   results: [],
 };
 
+function keyById(data) {
+  return keyBy(data, 'id');
+}
+
 export const reducer = handleActions({
   [PERFORM_SEARCH]: state => ({
     ...state,
@@ -21,7 +26,7 @@ export const reducer = handleActions({
 
   [PERFORM_SEARCH_SUCCESS]: (state, action) => ({
     ...state,
-    results: action.payload.data,
+    results: keyById(action.payload.data),
     loading: false,
   }),
 
@@ -33,11 +38,22 @@ export const reducer = handleActions({
 }, initialState);
 
 // Action Creators
-export const performSearch = (searchTerm) => {
+export const performSearch = (searchTerm, opts = {}) => {
   const query = searchTerm.replace(/ /g, '+');
 
+  const defaultOptions = {
+    limit: 50,
+    offset: 0,
+  };
+
+  const options = merge(defaultOptions, opts);
+
   return createRequestAction({
-    endpoint: `http://api.giphy.com/v1/gifs/search?q=${query}&api_key=dc6zaTOxFJmzC&limit=50&offset=0`,
+    endpoint: `http://api.giphy.com/v1/gifs/search?
+      q=${query}&
+      api_key=dc6zaTOxFJmzC&
+      limit=${options.limit}&
+      offset=${options.offset}`,
     method: 'GET',
     types: [
       { type: PERFORM_SEARCH },

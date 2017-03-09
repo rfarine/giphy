@@ -1,60 +1,21 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import SearchBar from 'components/searchBar/searchBar';
-import Results from 'components/results/results';
+import React, { PropTypes } from 'react';
 import 'styles/global.scss';
-import { performSearch } from 'redux/modules/search';
-import { getSearchResults } from 'redux/selectors';
 import style from './app.scss';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.submitSearch = this.submitSearch.bind(this);
-  }
+const App = ({ children }) => {
+  return (
+    <div className={style.container}>
+      {children}
+    </div>
+  );
+};
 
-  submitSearch(searchTerm) {
-    const { onSubmitSearch } = this.props;
-    onSubmitSearch(searchTerm);
-  }
-
-  render() {
-    const { loading, results } = this.props;
-
-    return (
-      <div className={style.container}>
-        <SearchBar onSubmit={this.submitSearch} />
-        {
-          !loading &&
-          <Results
-            loading={loading}
-            results={results}
-          />
-        }
-      </div>
-    );
-  }
-}
+App.defaultProps = {
+  children: <div />,
+};
 
 App.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  onSubmitSearch: PropTypes.func.isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  children: PropTypes.node,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.search.loading,
-    results: getSearchResults(state),
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSubmitSearch(searchTerm) {
-      dispatch(performSearch(searchTerm));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

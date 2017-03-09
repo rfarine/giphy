@@ -1,6 +1,6 @@
 {
   "name": "Giphy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Giphy search application",
   "main": "src/entry.js",
   "repository": "git@github.com:rfarine/giphy.git",
@@ -20,6 +20,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
     "redux-api-middleware": "^1.0.2",

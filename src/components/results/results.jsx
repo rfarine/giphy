@@ -1,4 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { goBack } from 'react-router-redux';
+import { getSearchResults } from 'redux/selectors';
+import { performSearch } from 'redux/modules/search';
 import PreviewImage from 'components/previewImage/previewImage';
 import style from './results.scss';
 
@@ -8,51 +13,84 @@ class Results extends Component {
     this.renderResults = this.renderResults.bind(this);
   }
 
+  componentDidMount() {
+    this.props.search();
+  }
+
   renderResults() {
-    const { results } = this.props;
+    const { params, loading, results } = this.props;
+
+    if (loading) {
+      return (
+        <h2 className={style.text}>Loading...</h2>
+      );
+    }
+
+    if (results.length < 1) {
+      return (
+        <h2 className={style.text}>No results.</h2>
+      );
+    }
 
     return results.map((result) => {
       return (
         <div key={result.id}>
-          <PreviewImage
-            preview={result.preview}
-            still={result.still}
-          />
+          <Link to={`/results/${params.searchTerm}/${result.id}`}>
+            <PreviewImage
+              preview={result.preview}
+              still={result.still}
+            />
+          </Link>
         </div>
       );
     });
   }
 
   render() {
-    const { loading, results } = this.props;
-
-    if (loading) {
-      return (
-        <div className={style.component}>
-          <h2 className={style.text}>Loading...</h2>
-        </div>
-      );
-    }
-
-    if (results.length < 1) {
-      return (
-        <div className={style.component}>
-          <h2 className={style.text}>No results.</h2>
-        </div>
-      );
-    }
+    const { back } = this.props;
 
     return (
-      <div className={style.component}>
-        {this.renderResults()}
+      <div>
+        <button onClick={back}>Go Back</button>
+        <div className={style.component}>
+          {this.renderResults()}
+        </div>
       </div>
     );
   }
 }
 
 Results.propTypes = {
+  back: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  params: PropTypes.shape({
+    searchTerm: PropTypes.string.isRequired,
+  }).isRequired,
+  search: PropTypes.func.isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+    still: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
-export default Results;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.search.loading,
+    results: getSearchResults(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    back() {
+      dispatch(goBack());
+    },
+
+    search() {
+      dispatch(performSearch(props.params.searchTerm));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

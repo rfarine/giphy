@@ -1,0 +1,40 @@
+@import 'styles/variables';
+
+.component {
+  text-align: center;
+  padding: 2em 0;
+}
+
+.image {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.meta {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+.rating {
+  text-transform: uppercase;
+}
+
+strong {
+  color: $blue;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 2em 0;
+}
+
+.homeButton {
+  background: $green;
+  color: $blue;
+
+  &:hover, &:focus {
+    color: white;
+  }
+}
