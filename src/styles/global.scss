@@ -2,14 +2,14 @@
 @import 'variables';
 
 :global {
-  button, input[type="button"], input[type="submit"] {
-    border: 1px solid $button;
-    background: $button;
+  input[type="submit"] {
+    border: 1px solid $buttonPrimary;
+    background: $buttonPrimary;
     color: white;
     padding: 1em 2em;
 
     &:hover, &:focus {
-      background: $buttonHover;
+      background: $buttonPrimaryHover;
       cursor: pointer;
     }
   }

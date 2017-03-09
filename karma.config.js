@@ -3,6 +3,7 @@ const {
   componentsPath,
   nodeModulesPath,
   srcPath,
+  stylesPath,
 } = require('./config/paths');
 
 module.exports = (config) => {
@@ -57,9 +58,22 @@ module.exports = (config) => {
           {
             test: /\.s?css$/,
             use: [
-              { loader: 'css-loader' },
+              { loader: 'style-loader' },
+              {
+                loader: 'css-loader',
+                options: {
+                  localIdentName: '[local]',
+                  modules: true,
+                  importLoaders: 2,
+                }
+              },
               { loader: 'postcss-loader' },
-              { loader: 'sass-loader' },
+              {
+                loader: 'sass-loader',
+                options: {
+                  includePaths: [ srcPath, componentsPath, nodeModulesPath ]
+                }
+              },
             ]
           },
         ]
@@ -75,11 +89,14 @@ module.exports = (config) => {
       resolve: {
         modules: [
           srcPath,
+          componentsPath,
+          stylesPath,
           nodeModulesPath,
         ],
 
         alias: {
           components: componentsPath,
+          styles: stylesPath,
         },
 
         extensions: ['.js', '.jsx'],

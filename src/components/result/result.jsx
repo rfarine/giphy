@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { go, goBack } from 'react-router-redux';
 import { getResultById } from 'redux/selectors';
+import Button from 'components/button/button';
 import style from './result.scss';
 
 const Result = ({
@@ -22,12 +23,14 @@ const Result = ({
         <strong>Date/Time Uploaded:</strong> {result.dateTime} <br />
         {
           result.userName &&
-            <strong>User:</strong> `${result.userName}`
+            <div>
+              <strong>User:</strong> {result.userName}
+            </div>
         }
       </div>
       <div className={style.buttonContainer}>
-        <button className={style.homeButton} onClick={home}>Home</button>
-        <button onClick={back}>Go Back</button>
+        <Button onClick={home} text="Home" type="secondary" />
+        <Button onClick={back} text="Go Back" />
       </div>
     </div>
   );

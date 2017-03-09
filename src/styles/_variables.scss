@@ -5,10 +5,15 @@ $blue: #0B486B;
 
 $primaryColor: $teal;
 $secondaryColor: $blue;
+$tertiaryColor: $green;
 
-$button: $primaryColor;
-$buttonHover: $secondaryColor;
+$buttonPrimary: $primaryColor;
+$buttonPrimaryHover: $secondaryColor;
+$buttonSecondary: $secondaryColor;
+$buttonSecondaryHover: $tertiaryColor;
+$buttonTertiary: $tertiaryColor;
+$buttonTertiaryHover: $primaryColor;
 
 // Breakpoints
 $mobile: 320px;
-$desktop: 1280px;
+$desktop: 1000px;

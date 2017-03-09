@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.3] 2017-03-09
+- Add Button component (and tests)
+- Fix karma config
+
 ## [0.1.2] 2017-03-08
 - Use back/home buttons on results/result pages
 - Only show search bar on "/"

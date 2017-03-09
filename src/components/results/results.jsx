@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { goBack } from 'react-router-redux';
 import { getSearchResults } from 'redux/selectors';
 import { performSearch } from 'redux/modules/search';
+import Button from 'components/button/button';
 import PreviewImage from 'components/previewImage/previewImage';
 import style from './results.scss';
 
@@ -51,7 +52,7 @@ class Results extends Component {
 
     return (
       <div>
-        <button onClick={back}>Go Back</button>
+        <Button onClick={back} text="Go Back" />
         <div className={style.component}>
           {this.renderResults()}
         </div>
