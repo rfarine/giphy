@@ -11,9 +11,30 @@
 }
 
 .meta {
-  text-align: left;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+.rating {
+  text-transform: uppercase;
 }
 
 strong {
   color: $blue;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 2em 0;
+}
+
+.homeButton {
+  background: $green;
+  color: $blue;
+
+  &:hover, &:focus {
+    color: white;
+  }
 }
