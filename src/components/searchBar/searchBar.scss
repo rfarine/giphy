@@ -1,23 +1,39 @@
+@import 'breakpoint-sass/stylesheets/breakpoint';
 @import 'styles/variables';
 
 .form {
   display: flex;
   flex: 1;
+  flex-flow: column;
   margin: 0 auto;
+
+  @include breakpoint($desktop) {
+    flex-flow: row;
+  }
 }
 
 .bar {
-  flex: 4;
+  flex: 1;
+  flex-flow: row wrap;
   padding: 1em;
   border: 1px solid $teal;
-  border-right: 0;
   color: $blue;
+  margin-bottom: 0.5em;
 
   &:focus {
     background: fade-out($green, 0.85);
     outline: 0;
     border: 1px solid $green;
+  }
+
+  @include breakpoint($desktop) {
+    flex: 4;
     border-right: 0;
+    margin-bottom: 0;
+
+    &:focus {
+      border-right: 0;
+    }
   }
 }
 

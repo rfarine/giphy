@@ -1,8 +1,11 @@
+@import 'breakpoint-sass/stylesheets/breakpoint';
 @import 'styles/variables';
 
 .component {
+  margin: 0 auto;
   text-align: center;
   padding: 2em 0;
+  max-width: 500px;
 }
 
 .image {
@@ -13,6 +16,7 @@
 .meta {
   font-size: 1.5em;
   line-height: 1.5em;
+  text-align: left;
 }
 
 .rating {
@@ -28,13 +32,4 @@ strong {
   flex-flow: row wrap;
   justify-content: space-between;
   padding: 2em 0;
-}
-
-.homeButton {
-  background: $green;
-  color: $blue;
-
-  &:hover, &:focus {
-    color: white;
-  }
 }

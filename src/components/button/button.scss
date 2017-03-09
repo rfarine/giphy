@@ -1,0 +1,40 @@
+@import 'styles/variables';
+
+.base {
+  color: white;
+  padding: 1em 2em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.primary {
+  composes: base;
+  border: 1px solid $buttonPrimary;
+  background: $buttonPrimary;
+
+  &:hover, &:focus {
+    background: $buttonPrimaryHover;
+  }
+}
+
+.secondary {
+  composes: base;
+  border: 1px solid $buttonSecondary;
+  background: $buttonSecondary;
+
+  &:hover, &:focus {
+    background: $buttonSecondaryHover;
+  }
+}
+
+.tertiary {
+  composes: base;
+  border: 1px solid $buttonTertiary;
+  background: $buttonTertiary;
+
+  &:hover, &:focus {
+    background: $buttonTertiaryHover;
+  }
+}
