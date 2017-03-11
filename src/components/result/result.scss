@@ -19,9 +19,8 @@
 }
 
 .meta {
-  font-size: 1.5em;
-  line-height: 1.5em;
   text-align: left;
+  margin-top: 1em;
 }
 
 .favorite {
@@ -37,6 +36,7 @@
   &:hover {
     color: $blue;
     cursor: pointer;
+    transition: all ease-in-out 0.25s;
   }
 
   &:focus {
@@ -46,10 +46,18 @@
 
 .heart {
   color: $green;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .heartActive {
   color: $blue;
+
+  &:hover {
+    transform: scale(0.9);
+  }
 }
 
 .rating {

@@ -19,11 +19,13 @@
   border: 1px solid $teal;
   color: $blue;
   margin-bottom: 0.5em;
+  transition: all ease-in-out 0.35s;
 
   &:focus {
     background: fade-out($green, 0.85);
     outline: 0;
     border: 1px solid $green;
+    transition: all ease-in-out 0.25s;
   }
 
   @include breakpoint($desktop) {

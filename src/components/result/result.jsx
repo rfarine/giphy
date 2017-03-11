@@ -70,6 +70,7 @@ class Result extends Component {
               className={this.state.isFavorite ? style.heartActive : style.heart}
               onClick={this.toggleFavorite}
               tabIndex="-1"
+              title={this.state.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
             >
               &hearts;
             </a>

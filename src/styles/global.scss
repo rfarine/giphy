@@ -7,10 +7,12 @@
     background: $buttonPrimary;
     color: white;
     padding: 1em 2em;
+    transition: background ease-in-out 0.35s;
 
     &:hover, &:focus {
       background: $buttonPrimaryHover;
       cursor: pointer;
+      transition: background ease-in-out 0.25s;
     }
   }
 
