@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.1] 2017-03-11
+- Add some tests for basic rendering
+
 ## [0.3.0] 2017-03-11
 - Reuse Results component for both Favorites page and Search Results page
 - Refactor selectors
