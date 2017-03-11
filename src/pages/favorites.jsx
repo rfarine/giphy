@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getSearchResults } from 'redux/selectors';
-import { performSearchByIds } from 'redux/modules/search';
+import _ from 'lodash';
+import { getFavorites } from 'redux/selectors';
+import { fetchFavorites } from 'redux/modules/search';
 import Results from 'components/results/results';
 
 class Favorites extends Component {
@@ -10,13 +11,12 @@ class Favorites extends Component {
   }
 
   render() {
-    const { items, loading, searchTerm } = this.props;
+    const { items, loading } = this.props;
 
     return (
       <Results
         items={items}
         loading={loading}
-        searchTerm={searchTerm}
       />
     );
   }
@@ -30,23 +30,29 @@ Favorites.propTypes = {
     preview: PropTypes.string.isRequired,
     still: PropTypes.string.isRequired,
   })).isRequired,
-  searchTerm: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    items: getSearchResults(state),
+    items: getFavorites(state),
     loading: state.search.loading,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  const favorites = JSON.parse(window.sessionStorage.getItem('favorites'));
-  const ids = favorites.join(',');
+  const storedFavorites = JSON.parse(window.sessionStorage.getItem('favorites'));
+  const groupedFavorites = _.chain(storedFavorites).groupBy('searchTerm').map((val, searchTerm) => {
+    return {
+      searchTerm,
+      ids: _.map(val, 'id'),
+    };
+  }).value();
 
   return {
     getFavorites() {
-      dispatch(performSearchByIds(ids));
+      return _.each(groupedFavorites, (favorites) => {
+        dispatch(fetchFavorites(favorites.ids, favorites.searchTerm));
+      });
     },
   };
 };

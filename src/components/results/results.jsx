@@ -10,7 +10,7 @@ class Results extends Component {
   }
 
   renderResults() {
-    const { loading, items, searchTerm } = this.props;
+    const { loading, items } = this.props;
 
     if (loading) {
       return (
@@ -27,7 +27,7 @@ class Results extends Component {
     return items.map((item) => {
       return (
         <div key={item.id}>
-          <Link to={`/results/${searchTerm}/${item.id}`}>
+          <Link to={`/results/${item.searchTerm}/${item.id}`}>
             <PreviewImage
               preview={item.preview}
               still={item.still}
@@ -56,7 +56,6 @@ Results.propTypes = {
     preview: PropTypes.string.isRequired,
     still: PropTypes.string.isRequired,
   })).isRequired,
-  searchTerm: PropTypes.string.isRequired,
 };
 
 export default Results;

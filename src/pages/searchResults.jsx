@@ -10,13 +10,12 @@ class SearchResults extends Component {
   }
 
   render() {
-    const { items, loading, searchTerm } = this.props;
+    const { items, loading } = this.props;
 
     return (
       <Results
         items={items}
         loading={loading}
-        searchTerm={searchTerm}
       />
     );
   }
@@ -30,14 +29,12 @@ SearchResults.propTypes = {
     still: PropTypes.string.isRequired,
   })).isRequired,
   search: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
-    items: getSearchResults(state),
+    items: getSearchResults(state, props.params.searchTerm),
     loading: state.search.loading,
-    searchTerm: state.search.searchTerm,
   };
 };
 
