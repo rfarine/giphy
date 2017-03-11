@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import style from './searchBar.scss';
 
-class SearchBar extends Component {
+export class UnwrappedSearchBar extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -46,8 +46,8 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.propTypes = {
+UnwrappedSearchBar.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(SearchBar);
+export default connect()(UnwrappedSearchBar);

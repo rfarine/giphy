@@ -1,6 +1,6 @@
 {
   "name": "Giphy",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Giphy search application",
   "main": "src/entry.js",
   "repository": "git@github.com:rfarine/giphy.git",
