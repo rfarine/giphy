@@ -43,18 +43,21 @@ export const reducer = handleActions({
 
   [PERFORM_SEARCH_BY_IDS]: state => ({
     ...state,
-    loading: false,
+    loading: true,
   }),
 
-  [PERFORM_SEARCH_BY_IDS_SUCCESS]: (state, action) => ({
-    ...state,
-    favorites: {
-      ...state.favorites,
-      [action.meta.searchTerm]: action.payload.data,
-    },
-    results: keyById(action.payload.data),
-    loading: false,
-  }),
+  [PERFORM_SEARCH_BY_IDS_SUCCESS]: (state, action) => {
+    const resultsAndFavorites = merge(state.results, keyById(action.payload.data));
+    return {
+      ...state,
+      favorites: {
+        ...state.favorites,
+        [action.meta.searchTerm]: action.payload.data,
+      },
+      results: resultsAndFavorites,
+      loading: false,
+    };
+  },
 
   [PERFORM_SEARCH_BY_IDS_FAIL]: (state, action) => ({
     ...state,

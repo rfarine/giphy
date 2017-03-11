@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.2] 2017-03-11
+- Small style changes
+- Fix redux store loading for favorites
+
 ## [0.3.1] 2017-03-11
 - Add some tests for basic rendering
 
