@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.0] 2017-03-11
+- Reuse Results component for both Favorites page and Search Results page
+- Refactor selectors
+- Store favorites as objects to retain searchTerm
+
 ## [0.2.0] 2017-03-08
 - Add ability to add result to favorites in sessionStorage
 - Add TODO for Favorites page

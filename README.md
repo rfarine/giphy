@@ -7,8 +7,6 @@
 
 `yarn install`
 
-## Build
-
 ## Run
 - In development mode: run `yarn dev`. Visit `http://localhost:8080`.
 
