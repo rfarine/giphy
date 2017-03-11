@@ -17,7 +17,7 @@ class App extends Component {
         <div className={style.nav}>
           <Link to="/">Home</Link>
           <div className={style.seperator}>|</div>
-          <Link to="favorites">Favorites</Link>
+          <Link to="/favorites">Favorites</Link>
         </div>
         {this.props.children}
       </div>

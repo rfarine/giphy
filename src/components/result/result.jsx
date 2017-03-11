@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { goBack } from 'react-router-redux';
-import { includes } from 'lodash';
+import { filter, some } from 'lodash';
 import { getResultById } from 'redux/selectors';
 import Button from 'components/button/button';
 import style from './result.scss';
@@ -10,28 +10,36 @@ class Result extends Component {
   constructor(props) {
     super(props);
 
-    const favorites = window.sessionStorage.getItem('favorites');
+    const favorites = JSON.parse(window.sessionStorage.getItem('favorites'));
 
     this.toggleFavorite = this.toggleFavorite.bind(this);
 
     this.state = {
-      isFavorite: includes(favorites, props.id),
+      isFavorite: some(favorites, ['id', props.id]),
     };
   }
 
   toggleFavorite() {
-    const { id } = this.props;
+    const { id, searchTerm } = this.props;
     const storage = window.sessionStorage;
     const favorites = JSON.parse(storage.getItem('favorites'));
 
     if (this.state.isFavorite) {
-      const index = favorites.indexOf(id);
-      favorites.splice(index, 1);
-      storage.setItem('favorites', JSON.stringify(favorites));
+      const newFavorites = filter(favorites, (favorite) => {
+        return favorite.id !== id;
+      });
+
+      storage.setItem('favorites', JSON.stringify(newFavorites));
+
       return this.setState({ isFavorite: false });
     }
 
-    favorites.push(id);
+    const favorite = {
+      id,
+      searchTerm,
+    };
+
+    favorites.push(favorite);
     storage.setItem('favorites', JSON.stringify(favorites));
     return this.setState({ isFavorite: true });
   }
@@ -84,12 +92,14 @@ Result.propTypes = {
     rating: PropTypes.string.isRequired,
     userName: PropTypes.string,
   }).isRequired,
+  searchTerm: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, props) => {
   return {
     id: props.params.id,
     result: getResultById(state, props),
+    searchTerm: props.params.searchTerm,
   };
 };
 

@@ -14,6 +14,7 @@ export const PERFORM_SEARCH_BY_IDS_FAIL = 'search/PERFORM_SEARCH_BY_IDS_FAIL';
 const initialState = {
   error: null,
   loading: false,
+  favorites: {},
   results: [],
 };
 
@@ -30,6 +31,7 @@ export const reducer = handleActions({
   [PERFORM_SEARCH_SUCCESS]: (state, action) => ({
     ...state,
     results: keyById(action.payload.data),
+    searchTerm: action.meta.searchTerm,
     loading: false,
   }),
 
@@ -46,6 +48,10 @@ export const reducer = handleActions({
 
   [PERFORM_SEARCH_BY_IDS_SUCCESS]: (state, action) => ({
     ...state,
+    favorites: {
+      ...state.favorites,
+      [action.meta.searchTerm]: action.payload.data,
+    },
     results: keyById(action.payload.data),
     loading: false,
   }),
@@ -77,13 +83,13 @@ export const performSearch = (searchTerm, opts = {}) => {
     method: 'GET',
     types: [
       { type: PERFORM_SEARCH },
-      { type: PERFORM_SEARCH_SUCCESS },
+      { type: PERFORM_SEARCH_SUCCESS, meta: { searchTerm } },
       { type: PERFORM_SEARCH_FAIL },
     ],
   });
 };
 
-export const performSearchByIds = (ids) => {
+export const fetchFavorites = (ids, searchTerm) => {
   return createRequestAction({
     endpoint: `http://api.giphy.com/v1/gifs?
       api_key=dc6zaTOxFJmzC&
@@ -91,7 +97,7 @@ export const performSearchByIds = (ids) => {
     method: 'GET',
     types: [
       { type: PERFORM_SEARCH_BY_IDS },
-      { type: PERFORM_SEARCH_BY_IDS_SUCCESS },
+      { type: PERFORM_SEARCH_BY_IDS_SUCCESS, meta: { searchTerm } },
       { type: PERFORM_SEARCH_BY_IDS_FAIL },
     ],
   });
