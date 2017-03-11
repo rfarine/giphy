@@ -30,6 +30,7 @@ export const reducer = handleActions({
   [PERFORM_SEARCH_SUCCESS]: (state, action) => ({
     ...state,
     results: keyById(action.payload.data),
+    searchTerm: action.meta.searchTerm,
     loading: false,
   }),
 
@@ -77,7 +78,7 @@ export const performSearch = (searchTerm, opts = {}) => {
     method: 'GET',
     types: [
       { type: PERFORM_SEARCH },
-      { type: PERFORM_SEARCH_SUCCESS },
+      { type: PERFORM_SEARCH_SUCCESS, meta: { searchTerm } },
       { type: PERFORM_SEARCH_FAIL },
     ],
   });

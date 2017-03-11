@@ -9,6 +9,7 @@ const {
   entryFile,
   indexFile,
   nodeModulesPath,
+  pagesPath,
   srcPath,
   stylesPath,
 } = require('../paths');
@@ -55,6 +56,7 @@ module.exports = {
 
     alias: {
       components: componentsPath,
+      pages: pagesPath,
       styles: stylesPath,
     },
 
