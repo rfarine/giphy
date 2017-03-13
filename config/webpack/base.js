@@ -57,6 +57,7 @@ module.exports = {
     alias: {
       components: componentsPath,
       pages: pagesPath,
+      'redux-api-middleware': '@aftonbladet/redux-api-middleware',
       styles: stylesPath,
     },
 
