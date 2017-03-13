@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import { apiMiddleware } from 'redux-api-middleware';
+import { apiMiddleware } from '@aftonbladet/redux-api-middleware';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import createLogger from 'redux-logger';

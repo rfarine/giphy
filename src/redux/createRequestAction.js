@@ -1,4 +1,4 @@
-import { CALL_API } from 'redux-api-middleware';
+import { CALL_API } from '@aftonbladet/redux-api-middleware';
 
 const createRequestAction = ({
   endpoint = '',
